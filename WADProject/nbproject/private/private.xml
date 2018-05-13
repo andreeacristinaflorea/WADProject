@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/WADProject/src/java/Controller/RegisterController.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/WADProject/web/Register.html</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/WADProject/WADProject/src/java/userExists/check.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/WADProject/WADProject/src/java/util/DBConnection.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/WADProject/WADProject/src/java/controllers/RegistrationController.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/WADProject/WADProject/src/java/controllers/LoginController.java</file>
         </group>
     </open-files>
 </project-private>
