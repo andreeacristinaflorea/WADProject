@@ -7,10 +7,10 @@
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
 	<div class="container">
                 <c:if test ="${session.login == true}" >
-			<a href="home" cssClass="navbar-brand">Class Scheduler</a>
+			<a href="home" class="navbar-brand">Class Scheduler</a>
 		</c:if>
 		<c:if test ="${session.login == null}" >
-			<a href="index" cssClass="navbar-brand">Class Scheduler</a>
+			<a href="index" class="navbar-brand">Class Scheduler</a>
 		</c:if>
 		<ul class="nav navbar-nav navbar-right">
                     <c:if test ="${session.login == true}" >
