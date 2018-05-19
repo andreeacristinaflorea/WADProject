@@ -1,3 +1,4 @@
 WADProject/build/
 WADProject/nbproject/
 /WADProject/dist/
+WADProject/web/WEB-INF/glassfish-web.xml
