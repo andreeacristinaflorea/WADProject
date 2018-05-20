@@ -68,6 +68,42 @@ public class CourseDAO {
         return assignments;
         
     }
+<<<<<<< HEAD
+=======
+
+	public List<String> retrieveNextCourses(Object fac) throws SQLException{
+        int faculty=(int) fac;
+        LocalDate date = LocalDate.now();
+        String dayName;
+        int hour=LocalDateTime.now().getHour();
+        DayOfWeek dow = date.getDayOfWeek();
+        dayName = dow.getDisplayName(TextStyle.NARROW_STANDALONE, Locale.ENGLISH);
+        System.out.println(faculty+" "+dayName+" "+hour);
+        String sql="SELECT cname,p.name,b.name,r.name,s.startHour,s.endHour FROM course "+
+                    "inner join FACULTY as f ON course.faculty=f.idFaculty  " +
+                    "inner join schedule as s on course.schedule=s.idSchedule " +
+                    "inner join proffessor as p on course.proffessor=p.idProffessor " +
+                    "inner join building as b on course.building=b.idbuilding " +
+                    "inner join room as r on course.room=r.idroom " +
+                    "WHERE course.faculty="+faculty+" and s.day="+1+" and "+hour+"<s.endHour;";
+        List<String> sch=new ArrayList<>();
+        
+        
+         Connection con = new DBConnection().getConnection();
+        java.sql.Statement instr = (java.sql.Statement) con.createStatement();
+          
+        
+            ResultSet rs=instr.executeQuery(sql);
+            //rs.getI
+           while (rs.next()) {
+                Course c=new Course(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6));
+                sch.add(c.toString());
+            }
+        
+        
+        return sch;
+    }
+>>>>>>> 590a17bd0956c49006703a9b3d5bd97302196457
 }
     
 
