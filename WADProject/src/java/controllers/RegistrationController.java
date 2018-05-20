@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -17,7 +18,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import userExists.check;
+import dao.userDAO;
+import java.util.Map;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -38,35 +41,35 @@ public class RegistrationController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            check ch=new check();
+            userDAO checker=new userDAO();
             List<String> l=new ArrayList<>();
             Set<String> param=(Set<String>) request.getParameterMap().keySet();
             List<String > errors=new ArrayList<>();
             
             
             for(String par: param){
-                if("uname".equals(par)) 
-                    if(ch.userExists(request.getParameter(par))==true) {
-                        errors.add("This user already exists! Please change the username.");
-                        request.setAttribute("errors", errors);
-                        System.out.println("Errors added");
-                        request.getRequestDispatcher("register.html").forward(request, response);
+               
+                if("username".equals(par)) 
+                    if(checker.userExists(request.getParameter(par))==true) {
+                        errors.add("Username already exists!");
+                        request.getSession().setAttribute("errors", errors);
+                        response.sendRedirect("content/register.jsp");
                     }
                     else{
                          for(String params: param){
                             l.add(request.getParameter(params));
                             }
-                            ch.insertUser(l.get(1),l.get(2),l.get(3),l.get(4));
+                            checker.insertUser(l.get(3),l.get(4),l.get(1),l.get(2));
                             errors.add("You are successfully registered!");
-                            request.setAttribute("errors", errors);
-                            System.out.println("Error added");
-                            request.getRequestDispatcher("LoginView.jsp").forward(request, response);
+                            request.getSession().setAttribute("errors", errors);
+                            response.sendRedirect("content/login.jsp");
                          break;
-                        
                     }
+          }
         }
     }
-}
+    
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

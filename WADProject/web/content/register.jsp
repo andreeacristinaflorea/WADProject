@@ -35,12 +35,13 @@
 							
 							<div class="form-group">
 								<label for="faculty">Faculty</label>
-								<select name="faculty" class="form-control choice">
-								  <option value="cti">Computer science</option>
-								  <option value="etti">Electronics</option>
-								  <option value="mechanics">Mechanics</option>
-								  <option value="chemistry">Chemistry</option>
-								</select>
+									<c:if test="${faculties != null && not empty faculties}"> 
+										<select name="fclt">
+											<c:forEach var="faculty" items="${faculties}">
+												<option>${faculty}</option>
+											</c:forEach>
+										</select><br>
+									</c:if>
 							</div>
 							<div class="form-group">
 								<label for="username">Username</label>
