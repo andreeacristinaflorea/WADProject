@@ -65,9 +65,14 @@ public class LoginController extends HttpServlet{
                         request.getSession().setAttribute("courseSchedule", courseSchedule);
                         //request.getRequestDispatcher("../contents/schedule.jsp").forward(request, response);
                         response.sendRedirect("/WADProject/content/schedule.jsp");
-                        
+                        List<String> assignms=c.retrieveAssignments();
+        
+			request.getSession().setAttribute("assignms", assignms);
+        
+			response.sendRedirect("content/assignmentView.jsp");
                        
                     }
+		
   
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

@@ -8,13 +8,31 @@ package Classes;
 public class Course {
     private int id;
     private String courseName;
-    private int faculty;
-    private int proffessor;
+    private String faculty;
+    private String proffessor;
     private int schedule;
-    private int building;
-    private int room;
+    private String building;
+    private String room;
+    private int start;
+    private int end;
 
-    public Course(int id, String courseName, int faculty, int proffessor, int schedule, int building, int room) {
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    public int getStart() {
+        return start;
+    }
+
+    public int getEnd() {
+        return end;
+    }
+
+    public Course(int id, String courseName, String faculty, String proffessor, int schedule, String building, String room) {
         this.id = id;
         this.courseName = courseName;
         this.faculty = faculty;
@@ -22,6 +40,29 @@ public class Course {
         this.schedule = schedule;
         this.building = building;
         this.room = room;
+    }
+    
+   public Course(int id, String courseName, String faculty, String proffessor, String building, String room) {
+        this.id = id;
+        this.courseName = courseName;
+        this.faculty = faculty;
+        this.proffessor = proffessor;
+        this.schedule = schedule;
+        this.building = building;
+        this.room = room;
+        this.start=start;
+        this.end=end;
+    }
+   
+   public Course(String courseName, String proffessor, String building, String room,int start,int end) {
+        this.courseName = courseName;
+        this.faculty = faculty;
+        this.proffessor = proffessor;
+        this.schedule = schedule;
+        this.building = building;
+        this.room = room;
+        this.start=start;
+        this.end=end;
     }
    
     public int getId() {
@@ -40,19 +81,19 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public int getFaculty() {
+    public String getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(int faculty) {
+    public void setFaculty(String faculty) {
         this.faculty = faculty;
     }
 
-    public int getProffessor() {
+    public String getProffessor() {
         return proffessor;
     }
 
-    public void setProffessor(int proffessor) {
+    public void setProffessor(String proffessor) {
         this.proffessor = proffessor;
     }
 
@@ -64,23 +105,26 @@ public class Course {
         this.schedule = schedule;
     }
 
-    public int getBuilding() {
+    public String getBuilding() {
         return building;
     }
 
-    public void setBuilding(int building) {
+    public void setBuilding(String building) {
         this.building = building;
     }
 
-    public int getRoom() {
+    public String getRoom() {
         return room;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(String room) {
         this.room = room;
     }
     
+   
+    @Override
+    public String toString(){
+        return this.courseName+","+this.proffessor+","+this.building+","+this.room+","+this.start+","+this.end;
+    }
     
 }
-
-

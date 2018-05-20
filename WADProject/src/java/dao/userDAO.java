@@ -22,13 +22,17 @@ public class userDAO {
         return false;
    }
      
-    public boolean userExists2(String user,String pass) throws ClassNotFoundException, SQLException{
-      java.sql.Statement instr = (java.sql.Statement) con.getConnection().createStatement();
-        String sql = "SELECT username,password FROM user WHERE password=PASSWORD('"+pass+"')";
+    public boolean userExistsLogin(String user,String pass) throws ClassNotFoundException, SQLException{
+        Connection con = new DBConnection().getConnection();
+        java.sql.Statement instr = (java.sql.Statement) con.createStatement();
+        String sql = "SELECT username FROM user WHERE password='"+pass+"'";
+        //String sql = "SELECT username FROM user WHERE password=PASSWORD('"+pass+"')";
         ResultSet rs = instr.executeQuery(sql);
         while(rs.next()){
             String username=rs.getString(1);
-            if(user.equals(username)) return true;
+            if(user.equals(username)) 
+                
+                return true;
         }
         return false;
     }
@@ -52,5 +56,18 @@ public class userDAO {
         
         return facultiesNames;
 }
-    
+   public int retrieveFaculty(Object user) throws SQLException {
+        String username=(String) user;
+        String sql="SELECT f.idfaculty FROM user "
+                + "INNER JOIN faculty as f ON user.faculty=f.fname WHERE username='"+username+"';";
+        int faculty=0;
+        Connection con = new DBConnection().getConnection();
+        java.sql.Statement instr = (java.sql.Statement) con.createStatement();          
+        ResultSet rs = instr.executeQuery(sql);
+        
+        while(rs.next()){
+            faculty=rs.getInt(1);
+        }
+        return faculty;
+    } 
 }
