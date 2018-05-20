@@ -1,13 +1,16 @@
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
 	<div class="container">
                 <c:if test ="${session.login == true}" >
-			<a href="../index.jsp" class="navbar-brand">Class Scheduler</a>
+			<a href="index.jsp" class="navbar-brand">Class Scheduler</a>
 		</c:if>
 		<c:if test ="${session.login == null}" >
-			<a href="../index.jsp" class="navbar-brand">Class Scheduler</a>
+			<a href="index.jsp" class="navbar-brand">Class Scheduler</a>
 		</c:if>
 		<ul class="nav navbar-nav navbar-right">
                     <c:if test ="${session.login == true}" >
@@ -16,8 +19,8 @@
                             <li><a action="Logout">Logout</a></li>
                     </c:if>
                     <c:if test ="${session.login == null}" >
-                                    <li><a href="../content/register.jsp">Sign up</a></li>	      	
-                                    <li><a href="../content/login.jsp">Login</a></li>
+                                    <li><a href="content/login.jsp">Sign up</a></li>	      	
+                                    <li><a href="content/login.jsp">Login</a></li>
                     </c:if>
                 </ul>
 	</div>

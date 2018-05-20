@@ -44,16 +44,14 @@
                                                             </div>
 
                                                             <div class="form-links">
-                                                                    <a href="register">Sign up</a>
+                                                                    <a href="register.jsp">Sign up</a>
                                                             </div>
-                                                    </form>
-                                                    	
-                                                   
-                                                    
+                                                    </form>    
                                             </div>
                                     </div>
                             </div>
                     </div>
             </div>
+            <%@include file="/WEB-INF/jspf/footer.jspf" %>
     </body>
 </html>

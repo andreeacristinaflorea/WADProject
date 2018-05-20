@@ -35,7 +35,7 @@
 							
 							<div class="form-group">
 								<label for="faculty">Faculty</label>
-								<select name="faculty">
+								<select name="faculty" class="form-control choice">
 								  <option value="cti">Computer science</option>
 								  <option value="etti">Electronics</option>
 								  <option value="mechanics">Mechanics</option>
@@ -45,7 +45,7 @@
 							<div class="form-group">
 								<label for="username">Username</label>
 								<input type="text" name="username" id="username"
-											placeholder="Usrname" class="form-control" required>
+											placeholder="Username" class="form-control" required>
 							</div>
 							
 							<div class="form-group">
@@ -72,5 +72,6 @@
 			</div>
 		</div>
 	</div>
+        <%@include file="/WEB-INF/jspf/footer.jspf" %>
 </body>
 </html>
