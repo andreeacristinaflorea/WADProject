@@ -5,11 +5,10 @@
  */
 package controllers;
 
-import Classes.Assignment;
-import dao.CourseDAO;
+import dao.userDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,13 +16,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.userDAO;
 
 /**
  *
- * @author oana
+ * @author user
  */
-public class LoginController extends HttpServlet{
+public class FacultiesController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +33,15 @@ public class LoginController extends HttpServlet{
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-
-        CourseDAO crs=new CourseDAO();
-        
-        List<String> assignms=crs.retrieveAssignments();
-        request.getSession().setAttribute("assignms", assignms);
-        response.sendRedirect("content/assignmentView.jsp");
-        
-        
+        try (PrintWriter out = response.getWriter()) {
             
-           
+            userDAO u=new userDAO();
+            List<String> faculties= u.retrieveFcultiesNames();
+            request.getSession().setAttribute("faculties", faculties);
+            response.sendRedirect("content/register.jsp");
+        }
         
     }
 
@@ -63,13 +58,9 @@ public class LoginController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-             
-                        
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FacultiesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -85,31 +76,9 @@ public class LoginController extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            userDAO checker=new userDAO();
-            //List<String> l=new ArrayList<>();
-            List<String > errors=new ArrayList<>();
-            String user=request.getParameter("uname");
-             String pass=request.getParameter("password");
-                              
-                    if(checker.userExists2(user, pass)==false ) {
-                        errors.add("Invalid user or password");
-                        request.setAttribute("errors", errors);
-                        System.out.println("Error added");
-                        request.getRequestDispatcher("LoginView.jsp").forward(request, response);
-                    }
-                        
-                else 
-                    {
-                        errors.add("You are logged in!");
-                        request.getSession().setAttribute("users", user);
-                        request.getRequestDispatcher("ProductView.jsp").forward(request, response);
-                        System.out.println(request.getSession().getAttribute("users"));
-                    }
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FacultiesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -122,4 +91,5 @@ public class LoginController extends HttpServlet{
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }

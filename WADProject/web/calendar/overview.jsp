@@ -21,16 +21,16 @@
         </nav>
         <div class="container-fluid">
             <div class="col-lg-4">
-                Some text
+                <%@include file="../content/schedule.jsp" %>
             </div>
             <div class="col-lg-4" onclick="../index.jsp">
                 <%@include file="calendar.jsp" %>
                 <div class="form-group">
-                    <a href="../index.jsp" class="btn btn-primary btn-block btn-md"><b style="color: white;">Add assignment</b></a>
+                    <a href="../content/assignment.jsp" class="btn btn-primary btn-block btn-md"><b style="color: white;">Add assignment</b></a>
                 </div>
             </div>
             <div class="col-lg-4">
-                Some text
+                <%@include file="../content/assignmentView.jsp" %>
             </div>
             
         </div>
